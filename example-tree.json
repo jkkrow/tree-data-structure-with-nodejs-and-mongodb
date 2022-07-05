@@ -1,0 +1,73 @@
+{
+  "root": {
+    "id": "e895ff4d-bcff-440a-87aa-c0696e4bf9ee",
+    "parentId": null,
+    "level": 0,
+    "info": { "name": "Root", "description": "0" },
+    "children": [
+      {
+        "id": "89f75879-43fe-41bf-828f-fe685b0c6e59",
+        "parentId": "e895ff4d-bcff-440a-87aa-c0696e4bf9ee",
+        "level": 1,
+        "info": { "name": "Child", "description": "1" },
+        "children": [
+          {
+            "id": "7efda1bf-5b53-4fec-8313-ede4bf52be7a",
+            "parentId": "89f75879-43fe-41bf-828f-fe685b0c6e59",
+            "level": 2,
+            "info": { "name": "Child of Child", "description": "1.1" },
+            "children": [
+              {
+                "id": "ab6dbdf7-7a2d-4fe8-a86a-46864db992b2",
+                "parentId": "7efda1bf-5b53-4fec-8313-ede4bf52be7a",
+                "level": 3,
+                "info": {
+                  "name": "Child of Child of Child",
+                  "description": "1.1.1"
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "42a5d467-fbb0-4cc3-a638-3c3a8b63c890",
+            "parentId": "89f75879-43fe-41bf-828f-fe685b0c6e59",
+            "level": 2,
+            "info": { "name": "Child of Child", "description": "1.2" },
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "dad5cf54-a5c6-4cc5-b3ea-988dcc01fb0d",
+        "parentId": "e895ff4d-bcff-440a-87aa-c0696e4bf9ee",
+        "level": 1,
+        "info": { "name": "Child", "description": "2" },
+        "children": [
+          {
+            "id": "c70c78c4-6a42-429e-b42c-bdb38e71addd",
+            "parentId": "dad5cf54-a5c6-4cc5-b3ea-988dcc01fb0d",
+            "level": 2,
+            "info": { "name": "Child of Child", "description": "2.1" },
+            "children": []
+          },
+          {
+            "id": "f31a8b79-176e-44be-abf4-245f45eaa802",
+            "parentId": "dad5cf54-a5c6-4cc5-b3ea-988dcc01fb0d",
+            "level": 2,
+            "info": { "name": "Child of Child", "description": "2.2" },
+            "children": []
+          },
+          {
+            "id": "33012fe4-a02f-47ef-8ce6-0d4626cf9c35",
+            "parentId": "dad5cf54-a5c6-4cc5-b3ea-988dcc01fb0d",
+            "level": 2,
+            "info": { "name": "Child of Child", "description": "2.3" },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "info": { "name": "Test Tree", "description": "Testing" }
+}
