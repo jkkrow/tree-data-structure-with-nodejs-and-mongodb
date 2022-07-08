@@ -1,9 +1,9 @@
-import { Node, NodeDTO } from '../models/node.model';
+import { Node, NodeDto } from '../models/node.model';
 
-export const traverseNodes = (root: NodeDTO) => {
+export const traverseNodes = (root: NodeDto) => {
   let currentNode = root;
-  const queue: NodeDTO[] = [];
-  const nodes: NodeDTO[] = [];
+  const queue: NodeDto[] = [];
+  const nodes: NodeDto[] = [];
 
   queue.push(currentNode);
 
@@ -21,8 +21,8 @@ export const traverseNodes = (root: NodeDTO) => {
 };
 
 export const buildTree = (nodes: Node[]) => {
-  const map: any = {};
-  let root: NodeDTO = {
+  const map: { [key: string]: number } = {};
+  let root: NodeDto = {
     id: '',
     parentId: null,
     level: 0,
@@ -30,16 +30,16 @@ export const buildTree = (nodes: Node[]) => {
     children: [],
   };
 
-  const nodeDTOs: NodeDTO[] = nodes.map((node, index) => {
+  const nodeDtos: NodeDto[] = nodes.map((node, index) => {
     map[node.id] = index;
-    const nodeDTO = { ...node, children: [] };
+    const nodeDto = { ...node, children: [] };
 
-    return nodeDTO;
+    return nodeDto;
   });
 
-  nodeDTOs.forEach((node) => {
+  nodeDtos.forEach((node) => {
     if (node.parentId) {
-      nodeDTOs[map[node.parentId]].children.push(node);
+      nodeDtos[map[node.parentId]].children.push(node);
     } else {
       root = node;
     }

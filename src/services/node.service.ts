@@ -1,10 +1,10 @@
 import {
   NodeModel,
   Node,
-  NodeDTO,
+  NodeDto,
   NodeAggregateResult,
 } from '../models/node.model';
-import { TreeDTO } from '../models/tree.model';
+import { TreeDto } from '../models/tree.model';
 import { traverseNodes } from '../util/tree';
 
 export const findByTree = async (rootId: string) => {
@@ -17,7 +17,6 @@ export const findByTree = async (rootId: string) => {
         connectFromField: 'id',
         connectToField: 'parentId',
         as: 'children',
-        // restrictSearchWithMatch: { creator: userId },
       },
     },
   ]);
@@ -28,9 +27,9 @@ export const findByTree = async (rootId: string) => {
   return nodes;
 };
 
-export const upsertByTree = async (treeDTO: TreeDTO) => {
-  const newNodes = traverseNodes(treeDTO.root);
-  const prevNodes = await findByTree(treeDTO.root.id);
+export const upsertByTree = async (treeDto: TreeDto) => {
+  const newNodes = traverseNodes(treeDto.root);
+  const prevNodes = await findByTree(treeDto.root.id);
 
   // Find created nodes
   const createdNodes = newNodes.filter(
@@ -67,7 +66,7 @@ export const removeByTree = async (rootId: string) => {
   return await NodeModel.bulkWrite(deleteBulk);
 };
 
-const _getInsertJobs = (nodes: (Node | NodeDTO)[]) => {
+const _getInsertJobs = (nodes: (Node | NodeDto)[]) => {
   const insertBulk = nodes.map((node) => ({
     insertOne: { document: node },
   }));
@@ -75,7 +74,7 @@ const _getInsertJobs = (nodes: (Node | NodeDTO)[]) => {
   return insertBulk;
 };
 
-const _getUpdateJobs = (nodes: (Node | NodeDTO)[]) => {
+const _getUpdateJobs = (nodes: (Node | NodeDto)[]) => {
   const updateBulk = nodes.map((node) => ({
     updateOne: {
       filter: { id: node.id },
@@ -86,7 +85,7 @@ const _getUpdateJobs = (nodes: (Node | NodeDTO)[]) => {
   return updateBulk;
 };
 
-const _getDeleteJobs = (nodes: (Node | NodeDTO)[]) => {
+const _getDeleteJobs = (nodes: (Node | NodeDto)[]) => {
   const deleteBulk = [
     {
       deleteMany: {

@@ -1,15 +1,15 @@
-import { TreeDTO, TreeAggregateResult, TreeModel } from '../models/tree.model';
+import { TreeDto, TreeAggregateResult, TreeModel } from '../models/tree.model';
 import { buildTree } from '../util/tree';
 
-export const upsert = async (treeDTO: TreeDTO) => {
-  const treeDocument = await TreeModel.findOne({ root: treeDTO.root.id });
+export const upsert = async (treeDto: TreeDto) => {
+  const treeDocument = await TreeModel.findOne({ root: treeDto.root.id });
 
   if (!treeDocument) {
-    const newTree = new TreeModel({ ...treeDTO, root: treeDTO.root.id });
+    const newTree = new TreeModel({ ...treeDto, root: treeDto.root.id });
     return await newTree.save();
   }
 
-  treeDocument.info = { ...treeDocument.info, ...treeDTO.info };
+  treeDocument.info = { ...treeDocument.info, ...treeDto.info };
 
   return await treeDocument.save();
 };
@@ -18,14 +18,14 @@ export const remove = async (rootId: string) => {
   const treeDocument = await TreeModel.findOne({ root: rootId });
 
   if (!treeDocument) {
-    throw new Error('Not found');
+    return;
   }
 
   return await treeDocument.remove();
 };
 
 export const findWithRoot = async () => {
-  return await TreeModel.aggregate<TreeDTO>([
+  return await TreeModel.aggregate<TreeDto>([
     {
       $lookup: {
         from: 'nodes',
@@ -71,7 +71,7 @@ export const findOneWithNodes = async (rootId: string) => {
   const nodes = [treeWithNodes.root, ...treeWithNodes.root.children];
   const root = buildTree(nodes);
 
-  const treeDTO: TreeDTO = { ...treeWithNodes, root };
+  const treeDto: TreeDto = { ...treeWithNodes, root };
 
-  return treeDTO;
+  return treeDto;
 };

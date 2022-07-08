@@ -7,8 +7,8 @@ export interface Node {
   info: { name: string; description: string };
 }
 
-export interface NodeDTO extends Node {
-  children: NodeDTO[];
+export interface NodeDto extends Node {
+  children: NodeDto[];
 }
 
 export interface NodeAggregateResult extends Node {
